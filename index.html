@@ -1,0 +1,2114 @@
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AssetChain — $RWA ICO | Tokenize Real-World Assets as NFTs on Ethereum</title>
+<meta name="description" content="AssetChain is a full-stack RWA protocol that converts real-world assets into compliant, yield-bearing NFTs on Ethereum. Join the $RWA presale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:  { 950:'#04050a', 900:'#06070d', 850:'#0a0c14', 800:'#0e111b', 700:'#151a28' },
+        brand:{ 300:'#a99cff', 400:'#8b7bff', 500:'#6c5ce7', 600:'#5847cf' },
+        aqua: { 300:'#6ce9f7', 400:'#3ddcf0', 500:'#16b8d4' },
+        gold: { 300:'#f8d67a', 400:'#f5c451', 500:'#e0a92e' },
+        jade: { 400:'#4ade9b', 500:'#22c58b' }
+      },
+      fontFamily: {
+        sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+        display: ['"Space Grotesk"','Inter','sans-serif'],
+        mono: ['"JetBrains Mono"','ui-monospace','monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+  :root{
+    --bg:#04050a;
+    --panel:rgba(255,255,255,.035);
+    --panel-2:rgba(255,255,255,.055);
+    --line:rgba(255,255,255,.09);
+    --line-2:rgba(255,255,255,.14);
+    --muted:#8d93ab;
+  }
+  *{ -webkit-tap-highlight-color:transparent; }
+  html,body{ background:var(--bg); }
+  body{
+    color:#e8eaf3;
+    font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.display{ font-family:'Space Grotesk','Inter',sans-serif; letter-spacing:-.025em; }
+  ::selection{ background:rgba(108,92,231,.45); color:#fff; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:#06070d; }
+  ::-webkit-scrollbar-thumb{ background:#22283a; border-radius:99px; border:2px solid #06070d; }
+  ::-webkit-scrollbar-thumb:hover{ background:#333c56; }
+
+  /* Background decor */
+  .bg-decor{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .orb{ position:absolute; border-radius:50%; filter:blur(120px); opacity:.35; }
+  .orb-a{ width:620px; height:620px; top:-220px; left:-140px; background:radial-gradient(circle at 30% 30%, #6c5ce7, transparent 70%); }
+  .orb-b{ width:560px; height:560px; top:120px; right:-200px; background:radial-gradient(circle at 60% 40%, #16b8d4, transparent 70%); opacity:.28; }
+  .orb-c{ width:700px; height:700px; bottom:-320px; left:35%; background:radial-gradient(circle at 50% 50%, #5847cf, transparent 70%); opacity:.22; }
+  .grid-lines{
+    position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%, #000 25%, transparent 78%);
+    mask-image:radial-gradient(ellipse 85% 55% at 50% 0%, #000 25%, transparent 78%);
+  }
+
+  .glass{
+    background:linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+    border:1px solid var(--line);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+  }
+  .glass-soft{
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--line);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+  .grad-text{
+    background:linear-gradient(100deg,#a99cff 0%, #6ce9f7 45%, #f8d67a 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+  .grad-line{ height:1px; background:linear-gradient(90deg, transparent, rgba(139,123,255,.65), rgba(61,220,240,.55), transparent); }
+
+  .btn{
+    position:relative; display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+    font-weight:600; border-radius:12px; transition:transform .18s cubic-bezier(.22,1,.36,1), box-shadow .18s, background .18s, border-color .18s;
+    white-space:nowrap;
+  }
+  .btn:active{ transform:translateY(1px) scale(.995); }
+  .btn-primary{
+    background:linear-gradient(100deg,#6c5ce7,#5847cf 40%,#16b8d4);
+    color:#fff; box-shadow:0 10px 30px -10px rgba(108,92,231,.85), inset 0 1px 0 rgba(255,255,255,.22);
+  }
+  .btn-primary:hover{ box-shadow:0 16px 40px -12px rgba(108,92,231,1), inset 0 1px 0 rgba(255,255,255,.28); transform:translateY(-1px); }
+  .btn-primary:disabled{ opacity:.55; cursor:not-allowed; transform:none; box-shadow:none; }
+  .btn-ghost{ background:rgba(255,255,255,.05); border:1px solid var(--line-2); color:#e8eaf3; }
+  .btn-ghost:hover{ background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.24); }
+  .btn-gold{ background:linear-gradient(100deg,#f5c451,#e0a92e); color:#241a02; box-shadow:0 10px 30px -12px rgba(245,196,81,.85); }
+  .btn-gold:hover{ transform:translateY(-1px); }
+
+  .chip{
+    display:inline-flex; align-items:center; gap:.4rem;
+    font-size:.7rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+    padding:.28rem .6rem; border-radius:999px;
+    background:rgba(255,255,255,.06); border:1px solid var(--line-2); color:#c3c8dc;
+  }
+  .chip-live{ background:rgba(74,222,155,.12); border-color:rgba(74,222,155,.35); color:#7ff0bb; }
+  .chip-gold{ background:rgba(245,196,81,.12); border-color:rgba(245,196,81,.32); color:#f8d67a; }
+  .dot-live{ width:6px; height:6px; border-radius:50%; background:#4ade9b; box-shadow:0 0 0 0 rgba(74,222,155,.7); animation:pulse-dot 1.8s infinite; }
+  @keyframes pulse-dot{
+    0%{ box-shadow:0 0 0 0 rgba(74,222,155,.6); }
+    70%{ box-shadow:0 0 0 8px rgba(74,222,155,0); }
+    100%{ box-shadow:0 0 0 0 rgba(74,222,155,0); }
+  }
+
+  .bar{ position:relative; overflow:hidden; background:rgba(255,255,255,.07); border-radius:999px; }
+  .bar > i{
+    display:block; height:100%; border-radius:999px;
+    background:linear-gradient(90deg,#6c5ce7,#8b7bff 45%,#3ddcf0);
+    transition:width .9s cubic-bezier(.22,1,.36,1);
+    position:relative;
+  }
+  .bar > i::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    animation:shimmer 2.4s infinite;
+  }
+  @keyframes shimmer{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(100%);} }
+
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  .ticker-wrap{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+  .ticker{ display:flex; gap:2.75rem; width:max-content; animation:marquee 38s linear infinite; }
+  .ticker-wrap:hover .ticker{ animation-play-state:paused; }
+  @keyframes marquee{ to{ transform:translateX(-50%); } }
+
+  .asset-visual{ position:relative; height:150px; overflow:hidden; }
+  .asset-visual::before{
+    content:''; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+    background-size:26px 26px; opacity:.5;
+  }
+  .asset-visual::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 35%, rgba(4,5,10,.85) 100%);
+  }
+  .asset-visual svg{ position:relative; z-index:2; }
+
+  .card-hover{ transition:transform .35s cubic-bezier(.22,1,.36,1), border-color .35s, box-shadow .35s; }
+  .card-hover:hover{ transform:translateY(-6px); border-color:rgba(139,123,255,.45); box-shadow:0 26px 60px -28px rgba(108,92,231,.9); }
+
+  /* Code viewer */
+  .code-shell{
+    background:#06070e; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+  }
+  .code-head{
+    display:flex; align-items:center; gap:.75rem; padding:.7rem .9rem;
+    background:rgba(255,255,255,.03); border-bottom:1px solid var(--line);
+  }
+  pre.code{
+    margin:0; padding:1.15rem 1.25rem; overflow:auto; max-height:430px;
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.75; color:#cfd5ee;
+    tab-size:4;
+  }
+  pre.code::-webkit-scrollbar{ height:8px; width:8px; }
+  .c-kw{ color:#c792ea; } .c-str{ color:#7ee787; } .c-num{ color:#ffcb6b; }
+  .c-cm{ color:#5a6483; font-style:italic; } .c-fn{ color:#82aaff; }
+
+  .tab{ padding:.5rem .85rem; border-radius:9px; font-size:.8rem; font-weight:600; color:#98a0ba; cursor:pointer; transition:.2s; border:1px solid transparent; }
+  .tab:hover{ color:#e8eaf3; background:rgba(255,255,255,.05); }
+  .tab.active{ color:#fff; background:rgba(108,92,231,.22); border-color:rgba(139,123,255,.45); }
+
+  /* Donut */
+  .donut{ width:210px; height:210px; border-radius:50%; position:relative; transition:background .35s ease; }
+  .donut::after{
+    content:''; position:absolute; inset:23%; border-radius:50%;
+    background:radial-gradient(circle at 50% 30%, #0d1020, #06070e 70%);
+    border:1px solid rgba(255,255,255,.07);
+  }
+  .donut-center{ position:absolute; inset:0; display:grid; place-content:center; text-align:center; z-index:3; }
+  .legend-item{ cursor:pointer; transition:.2s; border-radius:10px; padding:.35rem .5rem; }
+  .legend-item:hover{ background:rgba(255,255,255,.05); }
+
+  /* FAQ */
+  details.faq{ border-bottom:1px solid var(--line); }
+  details.faq summary{
+    list-style:none; cursor:pointer; padding:1.15rem .25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    font-weight:600; font-size:1rem; color:#e8eaf3; transition:color .2s;
+  }
+  details.faq summary::-webkit-details-marker{ display:none; }
+  details.faq summary:hover{ color:#a99cff; }
+  details.faq summary .chev{ transition:transform .3s cubic-bezier(.22,1,.36,1); flex-shrink:0; }
+  details.faq[open] summary .chev{ transform:rotate(45deg); color:#a99cff; }
+  details.faq[open] summary{ color:#a99cff; }
+  .faq-body{ padding:0 1.5rem 1.35rem .25rem; color:var(--muted); font-size:.925rem; line-height:1.7; }
+
+  /* Modal */
+  .modal-mask{
+    position:fixed; inset:0; z-index:90; display:grid; place-items:center; padding:1rem;
+    background:rgba(3,4,9,.78); backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px);
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .modal-mask.open{ opacity:1; pointer-events:auto; }
+  .modal-card{ transform:translateY(14px) scale(.98); transition:transform .3s cubic-bezier(.22,1,.36,1); }
+  .modal-mask.open .modal-card{ transform:none; }
+
+  /* Toast */
+  #toasts{ position:fixed; z-index:120; right:1rem; bottom:1rem; display:flex; flex-direction:column; gap:.6rem; max-width:calc(100vw - 2rem); }
+  .toast{
+    display:flex; gap:.7rem; align-items:flex-start;
+    background:rgba(12,15,26,.94); border:1px solid var(--line-2); border-radius:14px;
+    padding:.85rem 1rem; min-width:270px; box-shadow:0 20px 50px -20px rgba(0,0,0,.95);
+    animation:toast-in .4s cubic-bezier(.22,1,.36,1);
+  }
+  @keyframes toast-in{ from{ opacity:0; transform:translateY(14px) scale(.97);} to{ opacity:1; transform:none;} }
+  .toast.out{ animation:toast-out .35s forwards; }
+  @keyframes toast-out{ to{ opacity:0; transform:translateY(8px) scale(.97); } }
+
+  .feed-row{ animation:feed-in .5s cubic-bezier(.22,1,.36,1); }
+  @keyframes feed-in{ from{ opacity:0; transform:translateY(-8px);} to{ opacity:1; transform:none;} }
+
+  .spin{ animation:spin 1s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .glow-ring{ box-shadow:0 0 0 1px rgba(139,123,255,.35), 0 0 40px -8px rgba(108,92,231,.75); }
+
+  .stat-num{ font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.03em; }
+
+  .nav-link{ position:relative; font-size:.875rem; font-weight:500; color:#a6adc5; transition:color .2s; }
+  .nav-link:hover{ color:#fff; }
+  .nav-link::after{
+    content:''; position:absolute; left:0; right:100%; bottom:-6px; height:1.5px;
+    background:linear-gradient(90deg,#8b7bff,#3ddcf0); transition:right .3s cubic-bezier(.22,1,.36,1);
+  }
+  .nav-link:hover::after{ right:0; }
+
+  .step-line{ position:absolute; left:19px; top:44px; bottom:-14px; width:1px; background:linear-gradient(180deg, rgba(139,123,255,.6), transparent); }
+  @media (min-width:768px){
+    .step-line{ display:none; }
+  }
+
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  input[type=number]{ -moz-appearance:textfield; }
+
+  @media (max-width:640px){
+    .donut{ width:168px; height:168px; }
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Background -->
+<div class="bg-decor" aria-hidden="true">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+  <div class="grid-lines"></div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div id="navInner" class="mt-3 flex items-center justify-between gap-4 rounded-2xl px-3.5 sm:px-5 py-2.5 transition-all duration-300">
+      <!-- Brand -->
+      <a href="#top" class="flex items-center gap-2.5 group">
+        <span class="relative grid place-items-center w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-aqua-500 shadow-lg shadow-brand-600/40">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5"/><path d="M12 22V12"/>
+          </svg>
+        </span>
+        <span class="leading-none">
+          <span class="block font-display font-bold text-[15px] tracking-tight">AssetChain</span>
+          <span class="block text-[10px] font-medium tracking-[.18em] text-[#7b82a0]">RWA PROTOCOL</span>
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <nav class="hidden lg:flex items-center gap-7">
+        <a href="#sale" class="nav-link">Presale</a>
+        <a href="#tokenize" class="nav-link">Tokenize</a>
+        <a href="#contract" class="nav-link">Contracts</a>
+        <a href="#tokenomics" class="nav-link">Tokenomics</a>
+        <a href="#roadmap" class="nav-link">Roadmap</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <div id="navBalance" class="hidden sm:flex items-center gap-2 rounded-xl glass-soft px-3 py-2 text-xs font-semibold text-[#c3c8dc]">
+          <span class="text-[#7b82a0]">ETH</span>
+          <span id="navEth">—</span>
+        </div>
+        <button id="connectBtn" class="btn btn-primary px-4 py-2.5 text-sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="13" rx="3"/><path d="M2 10h20"/><circle cx="17" cy="14.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          <span id="connectLabel">Connect Wallet</span>
+        </button>
+        <button id="menuBtn" aria-label="Menu" class="lg:hidden grid place-items-center w-10 h-10 rounded-xl glass-soft">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="lg:hidden hidden mt-2 rounded-2xl glass p-3">
+      <div class="grid grid-cols-2 gap-2">
+        <a href="#sale" class="mobile-link btn btn-ghost py-3 text-sm">Presale</a>
+        <a href="#tokenize" class="mobile-link btn btn-ghost py-3 text-sm">Tokenize</a>
+        <a href="#contract" class="mobile-link btn btn-ghost py-3 text-sm">Contracts</a>
+        <a href="#tokenomics" class="mobile-link btn btn-ghost py-3 text-sm">Tokenomics</a>
+        <a href="#roadmap" class="mobile-link btn btn-ghost py-3 text-sm">Roadmap</a>
+        <a href="#faq" class="mobile-link btn btn-ghost py-3 text-sm">FAQ</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="relative z-10">
+
+<!-- ============ HERO ============ -->
+<section class="relative pt-32 sm:pt-36 pb-14 sm:pb-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid lg:grid-cols-[1.02fr_.98fr] gap-10 lg:gap-14 items-start">
+
+      <!-- LEFT -->
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 chip chip-live mb-6">
+          <span class="dot-live"></span> Stage 3 live · Public presale open
+        </div>
+
+        <h1 class="text-[2.15rem] leading-[1.08] sm:text-5xl lg:text-[3.4rem] font-bold tracking-tight">
+          Tokenize the world's<br class="hidden sm:block">
+          <span class="grad-text">real-world assets</span><br class="hidden sm:block">
+          on Ethereum.
+        </h1>
+
+        <p class="mt-5 text-[15px] sm:text-base leading-relaxed text-[#9aa1ba] max-w-xl">
+          AssetChain is a full-stack protocol that wraps physical assets — gold, real estate,
+          energy infrastructure, receivables — inside legally enforceable SPVs and mints them
+          as yield-bearing <span class="text-white font-medium">ERC-721</span> tokens. Fractionalize,
+          collateralize and trade them 24/7 with on-chain settlement.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#sale" class="btn btn-primary px-6 py-3.5 text-sm">
+            Join the $RWA Presale
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#contract" class="btn btn-ghost px-6 py-3.5 text-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>
+            Read the contracts
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="glass rounded-2xl p-4">
+            <div class="stat-num text-xl sm:text-2xl" data-count="18420500" data-prefix="$" data-short="true">$0</div>
+            <div class="text-[11px] uppercase tracking-widest text-[#7b82a0] mt-1.5">Raised</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="stat-num text-xl sm:text-2xl" data-count="28412" data-suffix="+">0</div>
+            <div class="text-[11px] uppercase tracking-widest text-[#7b82a0] mt-1.5">Holders</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="stat-num text-xl sm:text-2xl" data-count="1248">0</div>
+            <div class="text-[11px] uppercase tracking-widest text-[#7b82a0] mt-1.5">RWAs Minted</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="stat-num text-xl sm:text-2xl" data-count="412" data-prefix="$" data-suffix="M">$0</div>
+            <div class="text-[11px] uppercase tracking-widest text-[#7b82a0] mt-1.5">Assets Locked</div>
+          </div>
+        </div>
+
+        <!-- Trust -->
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] font-semibold uppercase tracking-widest text-[#6d7590]">
+          <span class="flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade9b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+            CertiK Audited
+          </span>
+          <span class="flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3ddcf0" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            KYC / AML Compliant
+          </span>
+          <span class="flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f5c451" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-5h4v5"/></svg>
+            SPV Legal Wrapper
+          </span>
+        </div>
+      </div>
+
+      <!-- RIGHT: SALE CARD -->
+      <div id="sale" class="reveal lg:sticky lg:top-24">
+        <div class="glass rounded-3xl p-5 sm:p-7 glow-ring">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="text-[11px] uppercase tracking-[.18em] text-[#7b82a0] font-semibold">Presale Stage 3</div>
+              <div class="mt-1.5 flex items-end gap-2">
+                <span class="stat-num text-3xl">$0.042</span>
+                <span class="text-sm text-[#8d93ab] mb-1">/ RWA</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-[11px] uppercase tracking-[.18em] text-[#7b82a0] font-semibold">Next price</div>
+              <div class="mt-1.5 stat-num text-xl text-gold-400">$0.061</div>
+              <div class="text-[11px] text-[#6d7590] mt-0.5">+45% at Stage 4</div>
+            </div>
+          </div>
+
+          <!-- Progress -->
+          <div class="mt-6">
+            <div class="flex items-end justify-between mb-2.5">
+              <span class="text-sm font-semibold" id="raisedLabel">$18,420,500</span>
+              <span class="text-xs text-[#8d93ab]">of <span class="text-white font-medium">$42,000,000</span> hard cap</span>
+            </div>
+            <div class="bar h-2.5"><i id="saleBar" style="width:0%"></i></div>
+            <div class="mt-2 flex items-center justify-between text-[11px] text-[#7b82a0]">
+              <span id="pctLabel">0% funded</span>
+              <span><span id="tokensLeft">—</span> RWA remaining</span>
+            </div>
+          </div>
+
+          <!-- Countdown -->
+          <div class="mt-6 rounded-2xl border border-white/10 bg-black/25 p-4">
+            <div class="text-[11px] uppercase tracking-[.18em] text-[#7b82a0] font-semibold mb-3">Stage ends in</div>
+            <div class="grid grid-cols-4 gap-2 text-center">
+              <div class="rounded-xl bg-white/5 border border-white/10 py-2.5">
+                <div class="stat-num text-xl sm:text-2xl" id="cd-d">--</div>
+                <div class="text-[10px] uppercase tracking-widest text-[#7b82a0] mt-0.5">Days</div>
+              </div>
+              <div class="rounded-xl bg-white/5 border border-white/10 py-2.5">
+                <div class="stat-num text-xl sm:text-2xl" id="cd-h">--</div>
+                <div class="text-[10px] uppercase tracking-widest text-[#7b82a0] mt-0.5">Hrs</div>
+              </div>
+              <div class="rounded-xl bg-white/5 border border-white/10 py-2.5">
+                <div class="stat-num text-xl sm:text-2xl" id="cd-m">--</div>
+                <div class="text-[10px] uppercase tracking-widest text-[#7b82a0] mt-0.5">Min</div>
+              </div>
+              <div class="rounded-xl bg-white/5 border border-white/10 py-2.5">
+                <div class="stat-num text-xl sm:text-2xl text-aqua-400" id="cd-s">--</div>
+                <div class="text-[10px] uppercase tracking-widest text-[#7b82a0] mt-0.5">Sec</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buy widget -->
+          <div class="mt-6">
+            <label class="block text-[11px] uppercase tracking-[.18em] text-[#7b82a0] font-semibold mb-2">Pay with ETH</label>
+            <div class="flex items-center gap-2 rounded-2xl border border-white/12 bg-black/30 px-4 py-3 focus-within:border-brand-400 transition-colors">
+              <input id="ethInput" type="number" min="0" step="0.01" value="1" inputmode="decimal"
+                class="w-full bg-transparent outline-none text-xl font-semibold font-display placeholder:text-[#4d5470]" placeholder="0.00">
+              <span class="flex items-center gap-1.5 text-sm font-semibold text-[#a6adc5] shrink-0">
+                <span class="grid place-items-center w-6 h-6 rounded-full bg-gradient-to-br from-[#8b7bff] to-[#4b3ec9] text-[10px] font-bold text-white">Ξ</span>
+                ETH
+              </span>
+            </div>
+
+            <div class="mt-2.5 flex flex-wrap gap-2">
+              <button class="quick btn btn-ghost px-3.5 py-1.5 text-xs" data-eth="0.5">0.5 ETH</button>
+              <button class="quick btn btn-ghost px-3.5 py-1.5 text-xs" data-eth="1">1 ETH</button>
+              <button class="quick btn btn-ghost px-3.5 py-1.5 text-xs" data-eth="2">2 ETH</button>
+              <button class="quick btn btn-ghost px-3.5 py-1.5 text-xs" data-eth="5">5 ETH</button>
+              <button class="quick btn btn-ghost px-3.5 py-1.5 text-xs" data-eth="10">10 ETH</button>
+            </div>
+
+            <div class="mt-4 rounded-2xl border border-white/10 bg-white/[.03] p-4 space-y-2.5">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-[#8d93ab]">You receive</span>
+                <span class="font-semibold text-white"><span id="tokensOut">76,190</span> <span class="text-[#8d93ab]">RWA</span></span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-[#8d93ab]">Bonus</span>
+                <span class="font-semibold text-jade-400" id="bonusLabel">+0%</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-[#8d93ab]">Est. value</span>
+                <span class="font-semibold text-white" id="valueOut">$3,250.00</span>
+              </div>
+            </div>
+
+            <button id="buyBtn" class="btn btn-primary w-full mt-4 py-3.5 text-sm">
+              Buy $RWA
+            </button>
+
+            <div id="allocation" class="hidden mt-4 rounded-2xl border border-jade-400/30 bg-jade-400/10 p-4">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-[#c3c8dc]">Your allocation</span>
+                <span class="font-semibold text-jade-400"><span id="userTokens">0</span> RWA</span>
+              </div>
+              <div class="text-[11px] text-[#8d93ab] mt-1.5">Claimable at TGE · Vesting: 25% unlock, then linear over 6 months</div>
+            </div>
+
+            <p class="mt-4 text-[11px] leading-relaxed text-[#6d7590] text-center">
+              Accepts ETH · USDC · USDT · Min 0.01 ETH · Gas ~$2.40 on Ethereum mainnet
+            </p>
+          </div>
+        </div>
+
+        <!-- Live feed -->
+        <div class="glass rounded-2xl mt-4 p-4">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="dot-live"></span>
+            <span class="text-[11px] uppercase tracking-[.18em] font-semibold text-[#7b82a0]">Live purchases</span>
+          </div>
+          <div id="feed" class="space-y-2 text-xs"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<section class="relative py-5 border-y border-white/8 bg-white/[.015]">
+  <div class="ticker-wrap">
+    <div class="ticker" id="ticker"></div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <span class="chip">The pipeline</span>
+      <h2 class="mt-5 text-3xl sm:text-4xl font-bold">From a deed on paper<br>to an NFT you can borrow against.</h2>
+      <p class="mt-4 text-[15px] leading-relaxed text-[#9aa1ba]">
+        Every asset passes through a deterministic four-step pipeline. Legal ownership is established
+        off-chain, cryptographic ownership on-chain — and the two are permanently linked by hash.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+      <article class="reveal relative glass rounded-2xl p-6">
+        <div class="step-line"></div>
+        <div class="grid place-items-center w-10 h-10 rounded-xl bg-brand-500/20 border border-brand-400/35 text-brand-300 font-bold font-display">01</div>
+        <h3 class="mt-5 text-lg font-semibold">Verification</h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-[#9aa1ba]">
+          Licensed appraisers, custodians and title registries submit attestations. Documents are
+          hashed and pinned to IPFS with a Chainlink oracle feed.
+        </p>
+      </article>
+
+      <article class="reveal relative glass rounded-2xl p-6" style="transition-delay:.08s">
+        <div class="step-line"></div>
+        <div class="grid place-items-center w-10 h-10 rounded-xl bg-aqua-500/20 border border-aqua-400/35 text-aqua-300 font-bold font-display">02</div>
+        <h3 class="mt-5 text-lg font-semibold">Legal wrapper</h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-[#9aa1ba]">
+          An SPV (Cayman / Swiss / Delaware) takes legal title. Token holders hold beneficial
+          ownership — enforceable in court, not just in code.
+        </p>
+      </article>
+
+      <article class="reveal relative glass rounded-2xl p-6" style="transition-delay:.16s">
+        <div class="step-line"></div>
+        <div class="grid place-items-center w-10 h-10 rounded-xl bg-gold-500/20 border border-gold-400/35 text-gold-300 font-bold font-display">03</div>
+        <h3 class="mt-5 text-lg font-semibold">Mint ERC-721</h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-[#9aa1ba]">
+          The SPV calls <span class="font-mono text-[13px] text-aqua-300">mintAsset()</span>. Metadata, valuation,
+          jurisdiction and custodian are written immutably into the token.
+        </p>
+      </article>
+
+      <article class="reveal relative glass rounded-2xl p-6" style="transition-delay:.24s">
+        <div class="grid place-items-center w-10 h-10 rounded-xl bg-jade-500/20 border border-jade-400/35 text-jade-400 font-bold font-display">04</div>
+        <h3 class="mt-5 text-lg font-semibold">Fractionalize</h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-[#9aa1ba]">
+          Split the NFT into 1,000–1,000,000 ERC-20 shares, list on the AssetChain AMM, and use
+          the position as collateral in our lending vaults.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ASSET MARKETPLACE ============ -->
+<section id="tokenize" class="py-16 sm:py-24 border-t border-white/8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="reveal flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <span class="chip chip-gold">Asset vault · live</span>
+        <h2 class="mt-5 text-3xl sm:text-4xl font-bold">Real assets awaiting tokenization</h2>
+        <p class="mt-4 text-[15px] leading-relaxed text-[#9aa1ba]">
+          Verified inventory currently in the pipeline. Each card is a real-world asset with a
+          signed appraisal, custodian and SPV structure ready to be minted on-chain.
+        </p>
+      </div>
+      <div class="glass rounded-2xl px-5 py-4 text-sm">
+        <div class="text-[11px] uppercase tracking-widest text-[#7b82a0] font-semibold">Total pipeline value</div>
+        <div class="stat-num text-2xl mt-1.5 text-gold-400">$412,850,000</div>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" id="assetGrid"></div>
+  </div>
+</section>
+
+<!-- ============ CONTRACTS ============ -->
+<section id="contract" class="py-16 sm:py-24 border-t border-white/8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10 lg:gap-14 items-start">
+
+      <div class="reveal lg:sticky lg:top-24">
+        <span class="chip">Smart contracts</span>
+        <h2 class="mt-5 text-3xl sm:text-4xl font-bold">Audited Solidity,<br>verifiable bytecode.</h2>
+        <p class="mt-4 text-[15px] leading-relaxed text-[#9aa1ba]">
+          Three contracts power the protocol: the <span class="text-white font-medium">$RWA</span> utility token,
+          the <span class="text-white font-medium">RealWorldAssetNFT</span> registry, and the
+          <span class="text-white font-medium">AssetChainICO</span> presale vault. All are immutable,
+          non-upgradeable, and verified on Etherscan.
+        </p>
+
+        <div class="mt-7 space-y-3">
+          <div class="glass-soft rounded-xl px-4 py-3.5 flex items-center justify-between">
+            <span class="text-sm text-[#c3c8dc]">CertiK Security Score</span>
+            <span class="font-semibold text-jade-400 text-sm">96.4 / 100</span>
+          </div>
+          <div class="glass-soft rounded-xl px-4 py-3.5 flex items-center justify-between">
+            <span class="text-sm text-[#c3c8dc]">Test coverage</span>
+            <span class="font-semibold text-white text-sm">98.2%</span>
+          </div>
+          <div class="glass-soft rounded-xl px-4 py-3.5 flex items-center justify-between">
+            <span class="text-sm text-[#c3c8dc]">Solidity / EVM</span>
+            <span class="font-semibold text-white text-sm">^0.8.24 · Cancun</span>
+          </div>
+          <div class="glass-soft rounded-xl px-4 py-3.5 flex items-center justify-between">
+            <span class="text-sm text-[#c3c8dc]">Timelock on owner</span>
+            <span class="font-semibold text-white text-sm">48 hours</span>
+          </div>
+        </div>
+
+        <a href="#" class="btn btn-ghost mt-7 px-5 py-3 text-sm w-full sm:w-auto">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z"/><path d="M14 2v6h6"/></svg>
+          View audit report (PDF)
+        </a>
+      </div>
+
+      <div class="reveal">
+        <div class="code-shell">
+          <div class="code-head">
+            <div class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 ml-1" id="tabs">
+              <button class="tab active" data-target="ico">AssetChainICO.sol</button>
+              <button class="tab" data-target="nft">RealWorldAssetNFT.sol</button>
+              <button class="tab" data-target="token">RWAToken.sol</button>
+            </div>
+            <button id="copyBtn" class="ml-auto btn btn-ghost px-3 py-1.5 text-[11px]">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+              <span id="copyLabel">Copy</span>
+            </button>
+          </div>
+          <pre class="code"><code id="codeOut"></code></pre>
+        </div>
+        <p class="mt-3 text-[11px] text-[#6d7590] font-mono">// Simplified for readability — full source available in the GitHub repo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOKENOMICS ============ -->
+<section id="tokenomics" class="py-16 sm:py-24 border-t border-white/8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <span class="chip">Tokenomics</span>
+      <h2 class="mt-5 text-3xl sm:text-4xl font-bold">Fixed supply. Long vesting. Real yield.</h2>
+      <p class="mt-4 text-[15px] leading-relaxed text-[#9aa1ba]">
+        1,000,000,000 $RWA — minted once, never again. Every protocol fee is paid in RWA,
+        burned at source, or redistributed to stakers. Team and advisor allocations vest over
+        36 months with a 12-month cliff.
+      </p>
+    </div>
+
+    <div class="mt-12 grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-center">
+      <div class="reveal flex flex-col items-center">
+        <div class="donut" id="donut">
+          <div class="donut-center">
+            <div class="text-[10px] uppercase tracking-[.2em] text-[#7b82a0] font-semibold">Supply</div>
+            <div class="stat-num text-2xl mt-1">1.0B</div>
+            <div class="text-[11px] text-[#7b82a0] mt-0.5">$RWA</div>
+          </div>
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-3 w-full max-w-sm">
+          <div class="glass-soft rounded-xl px-4 py-3 text-center">
+            <div class="stat-num text-lg text-aqua-400">$0.042</div>
+            <div class="text-[10px] uppercase tracking-widest text-[#7b82a0] mt-1">ICO price</div>
+          </div>
+          <div class="glass-soft rounded-xl px-4 py-3 text-center">
+            <div class="stat-num text-lg text-gold-400">$42M</div>
+            <div class="text-[10px] uppercase tracking-widest text-[#7b82a0] mt-1">FDV at ICO</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" id="legend"></div>
+    </div>
+
+    <div class="reveal mt-14 grid sm:grid-cols-3 gap-5">
+      <div class="glass rounded-2xl p-6">
+        <div class="text-[11px] uppercase tracking-widest text-[#7b82a0] font-semibold">Protocol fee</div>
+        <div class="stat-num text-3xl mt-2">0.75%</div>
+        <p class="mt-2.5 text-sm text-[#9aa1ba] leading-relaxed">Charged on every RWA secondary trade. 60% to stakers, 40% burned.</p>
+      </div>
+      <div class="glass rounded-2xl p-6">
+        <div class="text-[11px] uppercase tracking-widest text-[#7b82a0] font-semibold">Staking APR</div>
+        <div class="stat-num text-3xl mt-2 text-jade-400">11.4%</div>
+        <p class="mt-2.5 text-sm text-[#9aa1ba] leading-relaxed">Paid in ETH from real-world asset yield — not inflationary emissions.</p>
+      </div>
+      <div class="glass rounded-2xl p-6">
+        <div class="text-[11px] uppercase tracking-widest text-[#7b82a0] font-semibold">Collateral ratio</div>
+        <div class="stat-num text-3xl mt-2 text-gold-400">150%</div>
+        <p class="mt-2.5 text-sm text-[#9aa1ba] leading-relaxed">Minimum over-collateralization for stablecoin loans against RWA NFTs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section id="roadmap" class="py-16 sm:py-24 border-t border-white/8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <span class="chip">Roadmap</span>
+      <h2 class="mt-5 text-3xl sm:text-4xl font-bold">Built in public, shipped quarterly.</h2>
+    </div>
+
+    <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4" id="roadmap-grid"></div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-16 sm:py-24 border-t border-white/8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-16">
+    <div class="reveal">
+      <span class="chip">FAQ</span>
+      <h2 class="mt-5 text-3xl sm:text-4xl font-bold">Questions,<br>answered.</h2>
+      <p class="mt-4 text-[15px] leading-relaxed text-[#9aa1ba]">
+        Can't find what you're looking for? Our team answers in the community Telegram within
+        a few hours, every day.
+      </p>
+      <a href="#" class="btn btn-primary mt-6 px-5 py-3 text-sm">
+        Join Telegram
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="reveal">
+      <details class="faq" open>
+        <summary>What exactly is a "real-world asset" on AssetChain?<span class="chev text-xl leading-none text-[#7b82a0]">+</span></summary>
+        <div class="faq-body">
+          Any tangible or contractual asset with a provable owner and a cash-flow or appraisal value:
+          allocated gold, real estate, solar and wind infrastructure, farmland, equipment leases,
+          invoices, and fine art. Each one is held by a bankruptcy-remote SPV, so token holders hold
+          beneficial ownership rather than a mere claim against the platform.
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How is the $RWA presale priced, and when do tokens unlock?<span class="chev text-xl leading-none text-[#7b82a0]">+</span></summary>
+        <div class="faq-body">
+          Stage 3 tokens are priced at $0.042 with a 5% bonus on purchases above 2 ETH. At TGE,
+          25% of your allocation unlocks immediately and the remaining 75% streams linearly over
+          six months. Tokens are claimable directly from the <span class="font-mono text-[13px] text-aqua-300">AssetChainICO</span>
+          contract — no vesting portal, no custody risk.
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is this legal? What about securities regulation?<span class="chev text-xl leading-none text-[#7b82a0]">+</span></summary>
+        <div class="faq-body">
+          Asset NFTs are issued under Reg S / Reg D exemptions for non-US participants and accredited
+          US investors, with a transfer-restriction layer enforced on-chain via ERC-3643 compatible
+          hooks. Every SPV is registered in a recognized jurisdiction and audited annually. This page
+          is not an offer to sell securities in any jurisdiction where such an offer is unlawful.
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Can I really borrow against an NFT of a building?<span class="chev text-xl leading-none text-[#7b82a0]">+</span></summary>
+        <div class="faq-body">
+          Yes. Our lending vaults accept tokenized RWAs as collateral at a maximum 150% collateralization
+          ratio, using a Chainlink price feed plus a quarterly third-party appraisal. Loans are issued in
+          $RWA-pegged stable assets or ETH, and liquidations are handled by a Dutch auction that
+          preserves the underlying SPV.
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How do I receive the actual yield from the assets?<span class="chev text-xl leading-none text-[#7b82a0]">+</span></summary>
+        <div class="faq-body">
+          Rent, coupons and lease payments flow into the SPV's bank account, are converted to stablecoins,
+          and pushed on-chain by the custodian. From there, the distribution contract splits the funds
+          pro-rata to NFT holders automatically — you claim whenever you want, and there is no minimum.
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What happens if the protocol shuts down?<span class="chev text-xl leading-none text-[#7b82a0]">+</span></summary>
+        <div class="faq-body">
+          Assets live in the SPV, not in the protocol. If AssetChain's front-end or AMM ever shut down,
+          token holders retain a direct, legally enforceable beneficial interest in the SPV and can
+          redeem through the custodian. Contract ownership is held by a 48-hour timelock controlled by
+          a multi-sig of six independent signers.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="relative py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="reveal relative overflow-hidden rounded-3xl border border-white/12 p-8 sm:p-14 text-center"
+         style="background:linear-gradient(135deg, rgba(108,92,231,.28), rgba(22,184,212,.16) 55%, rgba(245,196,81,.14));">
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full bg-brand-500/25 blur-[120px] pointer-events-none"></div>
+      <div class="relative">
+        <span class="chip chip-live"><span class="dot-live"></span> Stage 3 closes soon</span>
+        <h2 class="mt-6 text-3xl sm:text-5xl font-bold tracking-tight">
+          The world's assets are<br class="hidden sm:block"> waiting to go on-chain.
+        </h2>
+        <p class="mt-5 text-[15px] sm:text-base text-[#c3c8dc] max-w-xl mx-auto leading-relaxed">
+          Secure your allocation at $0.042 before Stage 4 opens at $0.061. Connect a wallet and
+          participate in under a minute.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3 justify-center">
+          <button id="ctaBuy" class="btn btn-primary px-7 py-3.5 text-sm">Buy $RWA Now</button>
+          <a href="#contract" class="btn btn-ghost px-7 py-3.5 text-sm">Read the contracts</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative z-10 border-t border-white/8 pt-14 pb-8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <span class="grid place-items-center w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-aqua-500">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5"/><path d="M12 22V12"/></svg>
+          </span>
+          <span class="font-display font-bold">AssetChain</span>
+        </div>
+        <p class="mt-4 text-sm leading-relaxed text-[#8d93ab] max-w-xs">
+          The full-stack protocol for tokenizing real-world assets on Ethereum. Audited,
+          compliance-ready, and built for institutional custodians.
+        </p>
+        <div class="mt-5 flex gap-2.5">
+          <a href="#" aria-label="X" class="grid place-items-center w-9 h-9 rounded-xl glass-soft hover:bg-white/10 transition">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.6 7.5L22 22h-6.9l-4.3-6-4.9 6H3.1l7-8L2 2h6.9l4 5.6L18.2 2Zm-2.4 18h1.6L7.4 3.8H5.7L15.8 20Z"/></svg>
+          </a>
+          <a href="#" aria-label="Telegram" class="grid place-items-center w-9 h-9 rounded-xl glass-soft hover:bg-white/10 transition">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21.8 4.3 19 19.2c-.2 1-.8 1.2-1.6.8l-4.5-3.3-2.2 2.1c-.2.2-.4.4-.9.4l.3-4.6 8.4-7.6c.4-.3-.1-.5-.6-.2L7.5 13.3 3 11.9c-1-.3-1-1 .2-1.4l17.1-6.6c.8-.3 1.6.2 1.4 1.4Z"/></svg>
+          </a>
+          <a href="#" aria-label="GitHub" class="grid place-items-center w-9 h-9 rounded-xl glass-soft hover:bg-white/10 transition">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-[11px] uppercase tracking-[.18em] font-semibold text-[#7b82a0]">Protocol</h4>
+        <ul class="mt-4 space-y-2.5 text-sm text-[#9aa1ba]">
+          <li><a href="#tokenize" class="hover:text-white transition">Asset Vault</a></li>
+          <li><a href="#contract" class="hover:text-white transition">Contracts</a></li>
+          <li><a href="#" class="hover:text-white transition">Lending Vaults</a></li>
+          <li><a href="#" class="hover:text-white transition">Staking</a></li>
+          <li><a href="#" class="hover:text-white transition">Bridge</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-[11px] uppercase tracking-[.18em] font-semibold text-[#7b82a0]">Resources</h4>
+        <ul class="mt-4 space-y-2.5 text-sm text-[#9aa1ba]">
+          <li><a href="#" class="hover:text-white transition">Whitepaper</a></li>
+          <li><a href="#" class="hover:text-white transition">Audit Report</a></li>
+          <li><a href="#tokenomics" class="hover:text-white transition">Tokenomics</a></li>
+          <li><a href="#roadmap" class="hover:text-white transition">Roadmap</a></li>
+          <li><a href="#faq" class="hover:text-white transition">Documentation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-[11px] uppercase tracking-[.18em] font-semibold text-[#7b82a0]">Company</h4>
+        <ul class="mt-4 space-y-2.5 text-sm text-[#9aa1ba]">
+          <li><a href="#" class="hover:text-white transition">About</a></li>
+          <li><a href="#" class="hover:text-white transition">Careers</a></li>
+          <li><a href="#" class="hover:text-white transition">Brand Kit</a></li>
+          <li><a href="#" class="hover:text-white transition">Terms</a></li>
+          <li><a href="#" class="hover:text-white transition">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grad-line my-9"></div>
+
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[11px] text-[#6d7590] leading-relaxed">
+      <p class="max-w-2xl">
+        © 2025 AssetChain Labs Ltd. All rights reserved. $RWA tokens are not available to persons in
+        restricted jurisdictions. Nothing on this page constitutes financial, legal or tax advice.
+        Digital assets carry risk, including total loss of capital.
+      </p>
+      <div class="flex items-center gap-4 shrink-0">
+        <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-jade-400"></span> Mainnet live</span>
+        <span class="font-mono">v2.4.1</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ WALLET MODAL ============ -->
+<div id="walletModal" class="modal-mask" role="dialog" aria-modal="true" aria-label="Connect wallet">
+  <div class="modal-card glass rounded-3xl w-full max-w-md p-6 sm:p-7">
+    <div class="flex items-start justify-between">
+      <div>
+        <h3 class="text-xl font-semibold">Connect a wallet</h3>
+        <p class="text-sm text-[#8d93ab] mt-1.5">Choose a provider to participate in the $RWA presale.</p>
+      </div>
+      <button data-close class="grid place-items-center w-9 h-9 rounded-xl glass-soft hover:bg-white/10 transition shrink-0">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="mt-6 space-y-2.5">
+      <button class="wallet-opt w-full flex items-center gap-3.5 rounded-2xl border border-white/10 bg-white/[.03] px-4 py-3.5 hover:border-brand-400/50 hover:bg-white/[.06] transition text-left" data-wallet="MetaMask">
+        <span class="grid place-items-center w-10 h-10 rounded-xl bg-[#f6851b]/15 border border-[#f6851b]/35 shrink-0">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="#f6851b"><path d="M21.3 4.5 13.4 10l1.6-3.6 6.3-1.9ZM2.7 4.5l7.8 5.6-1.5-3.7L2.7 4.5Zm15.7 11.8-2.1 3.2 4.5 1.3 1.3-4.4-3.7-.1Zm-16.9-.1 1.3 4.4 4.5-1.3-2.1-3.2-3.7.1Z"/><path d="m7.1 10.9-1.3 2 4.6.2-.2-4.9-3.1 2.7Zm9.8 0-3.1-2.7-.2 4.9 4.6-.2-1.3-2Zm-6.4 6.1 2.8-1.3-.4-2.8-2.4 1.6v2.5Zm3.6 0v-2.5l-2.4-1.6-.4 2.8 2.8 1.3Z"/></svg>
+        </span>
+        <span class="flex-1">
+          <span class="block text-sm font-semibold">MetaMask</span>
+          <span class="block text-[11px] text-[#7b82a0] mt-0.5">Browser extension · 24.8M users</span>
+        </span>
+        <span class="chip chip-live">Detected</span>
+      </button>
+
+      <button class="wallet-opt w-full flex items-center gap-3.5 rounded-2xl border border-white/10 bg-white/[.03] px-4 py-3.5 hover:border-brand-400/50 hover:bg-white/[.06] transition text-left" data-wallet="WalletConnect">
+        <span class="grid place-items-center w-10 h-10 rounded-xl bg-[#3b99fc]/15 border border-[#3b99fc]/35 shrink-0">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#3b99fc" stroke-width="2" stroke-linecap="round"><path d="M5 10c4-4 10-4 14 0M8 13c2.5-2.4 5.5-2.4 8 0M11 16c.7-.6 1.3-.6 2 0"/></svg>
+        </span>
+        <span class="flex-1">
+          <span class="block text-sm font-semibold">WalletConnect</span>
+          <span class="block text-[11px] text-[#7b82a0] mt-0.5">Scan with any mobile wallet</span>
+        </span>
+      </button>
+
+      <button class="wallet-opt w-full flex items-center gap-3.5 rounded-2xl border border-white/10 bg-white/[.03] px-4 py-3.5 hover:border-brand-400/50 hover:bg-white/[.06] transition text-left" data-wallet="Coinbase Wallet">
+        <span class="grid place-items-center w-10 h-10 rounded-xl bg-[#0052ff]/15 border border-[#0052ff]/35 shrink-0">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="#0052ff"><circle cx="12" cy="12" r="9"/><rect x="9" y="9" width="6" height="6" rx="1.4" fill="#fff"/></svg>
+        </span>
+        <span class="flex-1">
+          <span class="block text-sm font-semibold">Coinbase Wallet</span>
+          <span class="block text-[11px] text-[#7b82a0] mt-0.5">Self-custody · Passkey ready</span>
+        </span>
+      </button>
+    </div>
+
+    <div id="walletStatus" class="hidden mt-5 rounded-2xl border border-brand-400/30 bg-brand-500/10 px-4 py-3.5 text-sm text-[#c3c8dc] flex items-center gap-3">
+      <svg class="spin text-brand-300" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.2-8.6"/></svg>
+      <span id="walletStatusText">Connecting…</span>
+    </div>
+
+    <p class="mt-5 text-[11px] leading-relaxed text-[#6d7590]">
+      By connecting you agree to the Terms of Service and acknowledge that you have read the
+      Risk Disclosure. AssetChain never takes custody of your keys.
+    </p>
+  </div>
+</div>
+
+<!-- ============ TOASTS ============ -->
+<div id="toasts" aria-live="polite"></div>
+
+<!-- ============ CONTRACT SOURCES (hidden) ============ -->
+<script type="text/plain" id="src-ico">
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+
+interface IPriceFeed {
+    function latestAnswer() external view returns (int256);
+}
+
+/**
+ * @title  AssetChainICO
+ * @notice Tiered presale vault for the $RWA token. Accepts ETH, prices
+ *         purchases through a Chainlink ETH/USD feed, enforces per-stage
+ *         allocations, and escrows claims until TGE.
+ * @dev    Non-upgradeable. Ownership sits behind a 48h timelock.
+ */
+contract AssetChainICO is Ownable, ReentrancyGuard {
+    struct Stage {
+        uint256 price;      // USD price per RWA, 18 decimals
+        uint256 allocation; // RWA reserved for this stage
+        uint256 sold;       // RWA sold in this stage
+        uint16  bonusBps;   // purchase bonus in basis points
+    }
+
+    IERC20     public immutable rwa;
+    IPriceFeed public immutable ethUsdFeed;
+    address    public treasury;
+
+    uint256 public constant HARD_CAP = 420_000_000e18;
+    uint256 public constant SOFT_CAP = 60_000_000e18;
+    uint256 public constant MIN_BUY  = 0.01 ether;
+
+    uint256 public startTime;
+    uint256 public endTime;
+    bool    public finalized;
+    bool    public softCapReached;
+
+    Stage[] public stages;
+
+    mapping(address => uint256) public contribution;
+    mapping(address => uint256) public claimable;
+    mapping(address => bool)    public refunded;
+
+    event Purchased(address indexed buyer, uint256 ethIn, uint256 tokens, uint8 stage);
+    event Claimed(address indexed user, uint256 amount);
+    event Refunded(address indexed user, uint256 amount);
+    event Finalized(uint256 raised, uint256 tokensSold);
+
+    modifier onlyLive() {
+        require(block.timestamp >= startTime, "ICO: not started");
+        require(block.timestamp <= endTime, "ICO: sale closed");
+        require(!finalized, "ICO: finalized");
+        _;
+    }
+
+    constructor(
+        address _rwa,
+        address _feed,
+        address _treasury,
+        uint256 _startTime,
+        uint256 _endTime
+    ) Ownable(msg.sender) {
+        require(_endTime > _startTime, "ICO: bad window");
+        rwa = IERC20(_rwa);
+        ethUsdFeed = IPriceFeed(_feed);
+        treasury = _treasury;
+        startTime = _startTime;
+        endTime = _endTime;
+
+        stages.push(Stage(0.028e18, 80_000_000e18,  0, 1000)); // Stage 1 - Seed
+        stages.push(Stage(0.042e18, 120_000_000e18, 0, 500));  // Stage 2 - Private
+        stages.push(Stage(0.061e18, 200_000_000e18, 0, 0));    // Stage 3 - Public
+    }
+
+    /// @notice Buy $RWA with native ETH at the current stage price.
+    function buy() external payable nonReentrant onlyLive {
+        require(msg.value >= MIN_BUY, "ICO: below minimum");
+
+        uint8  idx = currentStage();
+        Stage storage s = stages[idx];
+
+        uint256 ethUsd = uint256(ethUsdFeed.latestAnswer()); // 8 decimals
+        uint256 tokens = ((msg.value * ethUsd) / 1e8) * 1e18 / s.price;
+        tokens += (tokens * s.bonusBps) / 10_000;
+
+        require(s.sold + tokens <= s.allocation, "ICO: stage sold out");
+        require(totalRaised() + msg.value <= HARD_CAP / 1e18, "ICO: hard cap");
+
+        s.sold += tokens;
+        contribution[msg.sender] += msg.value;
+        claimable[msg.sender]    += tokens;
+
+        emit Purchased(msg.sender, msg.value, tokens, idx);
+    }
+
+    /// @notice Claim unlocked $RWA after the sale is finalized.
+    function claim() external nonReentrant {
+        require(finalized && softCapReached, "ICO: not claimable");
+        uint256 amount = claimable[msg.sender];
+        require(amount > 0, "ICO: nothing to claim");
+
+        claimable[msg.sender] = 0;
+        require(rwa.transfer(msg.sender, amount), "ICO: transfer failed");
+
+        emit Claimed(msg.sender, amount);
+    }
+
+    /// @notice Reclaim ETH if the soft cap was never reached.
+    function refund() external nonReentrant {
+        require(finalized && !softCapReached, "ICO: refund unavailable");
+        require(!refunded[msg.sender], "ICO: already refunded");
+
+        uint256 amount = contribution[msg.sender];
+        require(amount > 0, "ICO: no contribution");
+
+        refunded[msg.sender] = true;
+        contribution[msg.sender] = 0;
+
+        (bool ok, ) = msg.sender.call{value: amount}("");
+        require(ok, "ICO: refund failed");
+
+        emit Refunded(msg.sender, amount);
+    }
+
+    /// @notice Move to the next stage once the current allocation is filled.
+    function currentStage() public view returns (uint8) {
+        for (uint8 i = 0; i < stages.length; i++) {
+            if (stages[i].sold < stages[i].allocation) return i;
+        }
+        return uint8(stages.length - 1);
+    }
+
+    function totalRaised() public view returns (uint256) {
+        return address(this).balance + treasury.balance;
+    }
+
+    function finalize() external onlyOwner {
+        require(block.timestamp > endTime, "ICO: still open");
+        finalized = true;
+        softCapReached = totalRaised() * 1e18 >= SOFT_CAP;
+        emit Finalized(totalRaised(), totalSold());
+    }
+}
+</script>
+
+<script type="text/plain" id="src-nft">
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/common/ERC2981.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+
+/**
+ * @title  RealWorldAssetNFT
+ * @notice ERC-721 registry that represents legal beneficial ownership of a
+ *         real-world asset held by a bankruptcy-remote SPV. Supports royalty
+ *         splits, on-chain appraisal updates and ERC-20 fractionalization.
+ */
+contract RealWorldAssetNFT is ERC721, ERC2981, Ownable, ReentrancyGuard {
+    struct Asset {
+        string  documentHash;  // IPFS CID of the legal pack
+        string  jurisdiction;  // "CH", "SG", "US-DE", "KY"
+        uint256 valuationUSD;  // appraisal, 6 decimals
+        uint256 yieldBps;      // annualised cash yield
+        address custodian;     // regulated custodian / SPV
+        uint64  lastAppraisal;
+        bool    fractionalized;
+        bool    frozen;        // set by compliance oracle if needed
+    }
+
+    uint256 public nextAssetId = 1;
+    uint256 public totalValuationUSD;
+
+    mapping(uint256 => Asset)             public assets;
+    mapping(address => bool)              public isIssuer;
+    mapping(address => bool)              public isComplianceOfficer;
+    mapping(uint256 => address)           public fractionToken;
+    mapping(uint256 => uint256)           public fractionsIssued;
+
+    string public constant VERSION = "2.4.1";
+
+    event AssetMinted(uint256 indexed id, address indexed issuer, uint256 valuationUSD);
+    event Appraised(uint256 indexed id, uint256 oldValue, uint256 newValue);
+    event Fractionalized(uint256 indexed id, address token, uint256 supply);
+    event Frozen(uint256 indexed id, bool state);
+
+    modifier onlyIssuer() {
+        require(isIssuer[msg.sender], "RWA: not an approved issuer");
+        _;
+    }
+
+    constructor(address treasury) ERC721("AssetChain Real World Asset", "RWA-NFT") Ownable(msg.sender) {
+        _setDefaultRoyalty(treasury, 250); // 2.5% secondary royalty
+    }
+
+    /// @notice Mint a new tokenized real-world asset.
+    function mintAsset(
+        address to,
+        string calldata documentHash,
+        string calldata jurisdiction,
+        uint256 valuationUSD,
+        uint256 yieldBps,
+        address custodian
+    ) external onlyIssuer nonReentrant returns (uint256 id) {
+        require(to != address(0), "RWA: zero owner");
+        require(valuationUSD > 0, "RWA: no appraisal");
+        require(yieldBps <= 3_000, "RWA: yield too high");
+        require(custodian != address(0), "RWA: no custodian");
+
+        id = nextAssetId++;
+        _safeMint(to, id);
+
+        assets[id] = Asset({
+            documentHash: documentHash,
+            jurisdiction: jurisdiction,
+            valuationUSD: valuationUSD,
+            yieldBps: yieldBps,
+            custodian: custodian,
+            lastAppraisal: uint64(block.timestamp),
+            fractionalized: false,
+            frozen: false
+        });
+
+        totalValuationUSD += valuationUSD;
+        emit AssetMinted(id, msg.sender, valuationUSD);
+    }
+
+    /// @notice Update the appraisal after a signed third-party valuation.
+    function updateAppraisal(uint256 id, uint256 newValue)
+        external
+        onlyIssuer
+        nonReentrant
+    {
+        Asset storage a = assets[id];
+        require(_ownerOf(id) != address(0), "RWA: unknown asset");
+        require(newValue > 0, "RWA: bad value");
+
+        uint256 old = a.valuationUSD;
+        a.valuationUSD = newValue;
+        a.lastAppraisal = uint64(block.timestamp);
+
+        totalValuationUSD = totalValuationUSD - old + newValue;
+        emit Appraised(id, old, newValue);
+    }
+
+    /// @notice Lock the NFT in escrow and issue ERC-20 shares against it.
+    function fractionalize(uint256 id, address shareToken, uint256 supply)
+        external
+        onlyOwner
+        nonReentrant
+    {
+        require(ownerOf(id) == address(this), "RWA: not escrowed");
+        Asset storage a = assets[id];
+        require(!a.fractionalized, "RWA: already split");
+
+        a.fractionalized = true;
+        fractionToken[id] = shareToken;
+        fractionsIssued[id] = supply;
+
+        emit Fractionalized(id, shareToken, supply);
+    }
+
+    /// @notice Compliance hook — blocks transfers of flagged assets.
+    function _update(address to, uint256 id, address auth)
+        internal
+        override
+        returns (address from)
+    {
+        from = super._update(to, id, auth);
+        require(!assets[id].frozen || to == address(0), "RWA: asset frozen");
+    }
+
+    function setIssuer(address account, bool allowed) external onlyOwner {
+        isIssuer[account] = allowed;
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC2981)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+}
+</script>
+
+<script type="text/plain" id="src-token">
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Pausable.sol";
+
+/**
+ * @title  RWAToken
+ * @notice Fixed-supply utility and governance token of the AssetChain
+ *         protocol. Stakers earn ETH from real-world asset cash flows.
+ */
+contract RWAToken is ERC20, ERC20Burnable, Ownable, Pausable {
+    uint256 public constant MAX_SUPPLY = 1_000_000_000e18;
+    uint256 public constant FEE_BPS    = 75; // 0.75% protocol fee
+
+    mapping(address => bool)    public isMinter;
+    mapping(address => uint256) public stakedBalance;
+    mapping(address => uint256) public rewardsDebt;
+
+    uint256 public accRewardsPerShare;
+    uint256 public totalStaked;
+
+    event MinterUpdated(address indexed account, bool allowed);
+    event Staked(address indexed user, uint256 amount);
+    event Unstaked(address indexed user, uint256 amount);
+    event RewardsDistributed(uint256 amount, uint256 perShare);
+
+    modifier onlyMinter() {
+        require(isMinter[msg.sender], "RWA: not a minter");
+        _;
+    }
+
+    constructor(address treasury)
+        ERC20("AssetChain", "RWA")
+        Ownable(msg.sender)
+    {
+        _mint(treasury, 150_000_000e18); // ecosystem + treasury bucket
+    }
+
+    /// @notice Mint new RWA. Only callable by the ICO vault and the
+    ///         rewards controller, and never above MAX_SUPPLY.
+    function mint(address to, uint256 amount) external onlyMinter whenNotPaused {
+        require(totalSupply() + amount <= MAX_SUPPLY, "RWA: cap exceeded");
+        _mint(to, amount);
+    }
+
+    /// @notice Stake RWA to earn a pro-rata share of protocol ETH revenue.
+    function stake(uint256 amount) external whenNotPaused {
+        require(amount > 0, "RWA: zero stake");
+        _transfer(msg.sender, address(this), amount);
+
+        _settle(msg.sender);
+        stakedBalance[msg.sender] += amount;
+        totalStaked += amount;
+
+        emit Staked(msg.sender, amount);
+    }
+
+    /// @notice Withdraw staked RWA plus any pending rewards.
+    function unstake(uint256 amount) external {
+        require(stakedBalance[msg.sender] >= amount, "RWA: insufficient stake");
+
+        _settle(msg.sender);
+        stakedBalance[msg.sender] -= amount;
+        totalStaked -= amount;
+        _transfer(address(this), msg.sender, amount);
+
+        emit Unstaked(msg.sender, amount);
+    }
+
+    /// @notice Push real-world yield (converted to ETH) to stakers.
+    function distributeRewards() external payable whenNotPaused {
+        require(totalStaked > 0, "RWA: no stakers");
+        accRewardsPerShare += (msg.value * 1e18) / totalStaked;
+        emit RewardsDistributed(msg.value, accRewardsPerShare);
+    }
+
+    function pending(address user) public view returns (uint256) {
+        uint256 delta = accRewardsPerShare - rewardsDebt[user];
+        return (stakedBalance[user] * delta) / 1e18;
+    }
+
+    function _settle(address user) internal {
+        uint256 owed = pending(user);
+        rewardsDebt[user] = accRewardsPerShare;
+        if (owed > 0) {
+            (bool ok, ) = user.call{value: owed}("");
+            require(ok, "RWA: reward transfer failed");
+        }
+    }
+
+    function setMinter(address account, bool allowed) external onlyOwner {
+        isMinter[account] = allowed;
+        emit MinterUpdated(account, allowed);
+    }
+
+    function pause()   external onlyOwner { _pause(); }
+    function unpause() external onlyOwner { _unpause(); }
+}
+</script>
+
+<!-- ============ APP SCRIPT ============ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     STATE
+  --------------------------------------------------------- */
+  const state = {
+    ethUsd: 3250,
+    price: 0.042,
+    raised: 18420500,
+    hardCap: 42000000,
+    totalTokens: 1000000000,
+    tokensSold: 439000000,
+    connected: false,
+    address: '',
+    ethBalance: 4.2841,
+    userTokens: 0
+  };
+
+  const fmt = (n, d = 0) => new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: d, maximumFractionDigits: d
+  }).format(n);
+
+  const shortUsd = n => {
+    if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
+    if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+    if (n >= 1e3) return '$' + (n / 1e3).toFixed(1) + 'K';
+    return '$' + n.toFixed(0);
+  };
+
+  const shortAddr = a => a.slice(0, 6) + '…' + a.slice(-4);
+
+  const randomAddr = () => {
+    const hex = '0123456789abcdef';
+    let s = '0x';
+    for (let i = 0; i < 40; i++) s += hex[Math.floor(Math.random() * 16)];
+    return s;
+  };
+
+  /* ---------------------------------------------------------
+     NAV SCROLL
+  --------------------------------------------------------- */
+  const navInner = document.getElementById('navInner');
+  const onScroll = () => {
+    if (window.scrollY > 24) {
+      navInner.classList.add('glass');
+      navInner.classList.add('shadow-2xl');
+      navInner.classList.add('shadow-black/40');
+    } else {
+      navInner.classList.remove('glass');
+      navInner.classList.remove('shadow-2xl');
+      navInner.classList.remove('shadow-black/40');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Mobile menu */
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  document.querySelectorAll('.mobile-link').forEach(l =>
+    l.addEventListener('click', () => mobileMenu.classList.add('hidden'))
+  );
+
+  /* ---------------------------------------------------------
+     TOASTS
+  --------------------------------------------------------- */
+  const toastBox = document.getElementById('toasts');
+  function toast(title, msg, kind = 'success') {
+    const colors = {
+      success: { icon: '#4ade9b', bg: 'rgba(74,222,155,.14)', border: 'rgba(74,222,155,.35)' },
+      info:    { icon: '#3ddcf0', bg: 'rgba(61,220,240,.14)', border: 'rgba(61,220,240,.35)' },
+      warn:    { icon: '#f5c451', bg: 'rgba(245,196,81,.14)', border: 'rgba(245,196,81,.35)' }
+    };
+    const c = colors[kind] || colors.success;
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.innerHTML = `
+      <span style="background:${c.bg};border:1px solid ${c.border};color:${c.icon}"
+            class="grid place-items-center w-8 h-8 rounded-xl shrink-0">
+        ${kind === 'warn'
+          ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 8v5M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>'
+          : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>'}
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-semibold text-white">${title}</span>
+        <span class="block text-[12px] text-[#9aa1ba] mt-0.5 leading-snug">${msg}</span>
+      </span>`;
+    toastBox.appendChild(el);
+    setTimeout(() => {
+      el.classList.add('out');
+      setTimeout(() => el.remove(), 360);
+    }, 4200);
+  }
+
+  /* ---------------------------------------------------------
+     COUNTDOWN
+  --------------------------------------------------------- */
+  const endTime = Date.now() + (11 * 24 * 60 * 60 * 1000) + (8 * 3600 * 1000) + (42 * 60 * 1000);
+  const pad = n => String(n).padStart(2, '0');
+  function tick() {
+    let diff = Math.max(0, endTime - Date.now());
+    const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+    const h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+    const m = Math.floor(diff / 60000);    diff -= m * 60000;
+    const s = Math.floor(diff / 1000);
+    document.getElementById('cd-d').textContent = pad(d);
+    document.getElementById('cd-h').textContent = pad(h);
+    document.getElementById('cd-m').textContent = pad(m);
+    document.getElementById('cd-s').textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* ---------------------------------------------------------
+     SALE PROGRESS + TICKER
+  --------------------------------------------------------- */
+  const saleBar = document.getElementById('saleBar');
+  const raisedLabel = document.getElementById('raisedLabel');
+  const pctLabel = document.getElementById('pctLabel');
+  const tokensLeft = document.getElementById('tokensLeft');
+
+  function renderSale() {
+    const pct = Math.min(100, (state.raised / state.hardCap) * 100);
+    saleBar.style.width = pct.toFixed(2) + '%';
+    raisedLabel.textContent = shortUsd(state.raised);
+    pctLabel.textContent = pct.toFixed(1) + '% funded';
+    tokensLeft.textContent = fmt(Math.max(0, state.totalTokens - state.tokensSold));
+  }
+  renderSale();
+
+  /* Ticker */
+  const tickerItems = [
+    'GOLD · 412 oz allocated · Zurich vault',
+    'REAL ESTATE · Lisbon portfolio €18.4M',
+    'SOLAR · 12 MW Nevada array',
+    'FARMland · 3,400 ha Mato Grosso',
+    'FINE ART · Post-war blue chip',
+    'RECEIVABLES · $2.4M blue-chip invoices',
+    'EQUIPMENT · 84 mining rigs',
+    'TIMBER · Certified Baltic forestry'
+  ];
+  const tickerEl = document.getElementById('ticker');
+  const tickerHTML = tickerItems.map(t => `
+    <span class="flex items-center gap-3 shrink-0 text-[11px] font-semibold uppercase tracking-[.16em] text-[#7b82a0]">
+      <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-brand-400 to-aqua-400"></span>${t}
+    </span>`).join('');
+  tickerEl.innerHTML = tickerHTML + tickerHTML;
+
+  /* ---------------------------------------------------------
+     BUY WIDGET MATH
+  --------------------------------------------------------- */
+  const ethInput   = document.getElementById('ethInput');
+  const tokensOut  = document.getElementById('tokensOut');
+  const bonusLabel = document.getElementById('bonusLabel');
+  const valueOut   = document.getElementById('valueOut');
+  const allocation = document.getElementById('allocation');
+  const userTokens = document.getElementById('userTokens');
+
+  function bonusBps(eth) {
+    if (eth >= 5) return 1500;  // +15%
+    if (eth >= 2) return 500;   // +5%
+    return 0;
+  }
+
+  function calc() {
+    const eth = parseFloat(ethInput.value) || 0;
+    const usd = eth * state.ethUsd;
+    const bps = bonusBps(eth);
+    let tokens = (usd / state.price) * (1 + bps / 10000);
+    if (!isFinite(tokens) || tokens < 0) tokens = 0;
+    tokensOut.textContent = fmt(Math.round(tokens));
+    bonusLabel.textContent = bps ? '+' + (bps / 100).toFixed(0) + '%' : '+0%';
+    valueOut.textContent = '$' + fmt(usd, 2);
+    return { eth, tokens: Math.round(tokens), usd };
+  }
+  ethInput.addEventListener('input', calc);
+  document.querySelectorAll('.quick').forEach(b =>
+    b.addEventListener('click', () => {
+      ethInput.value = b.dataset.eth;
+      calc();
+    })
+  );
+  calc();
+
+  /* ---------------------------------------------------------
+     ASSET CARDS
+  --------------------------------------------------------- */
+  const assets = [
+    {
+      name: 'Sovereign Gold Vault',
+      category: 'Commodities',
+      desc: 'Allocated 999.9 fine gold bars in a Zurich LBMA vault, insured by Lloyd\'s.',
+      valuation: '$28,400,000',
+      yield: '2.1%',
+      supply: '4,000,000 RWA',
+      funded: 92,
+      g1: '#f5c451', g2: '#7a4c05',
+      icon: '<rect x="14" y="34" width="34" height="12" rx="3"/><rect x="18" y="21" width="34" height="12" rx="3"/><rect x="22" y="8" width="34" height="12" rx="3"/>'
+    },
+    {
+      name: 'Amazon Rainforest Parcel',
+      category: 'Land',
+      desc: '88 hectares of certified sustainable forestry with verified carbon credits.',
+      valuation: '$6,150,000',
+      yield: '4.6%',
+      supply: '1,200,000 RWA',
+      funded: 74,
+      g1: '#4ade9b', g2: '#0b5137',
+      icon: '<path d="M40 8 22 34h36L40 8Z"/><path d="M40 24 26 44h28L40 24Z"/><rect x="37" y="44" width="6" height="20" rx="2"/>'
+    },
+    {
+      name: 'Nevada Solar Farm',
+      category: 'Infrastructure',
+      desc: '12 MW operational photovoltaic array with a 20-year PPA with a utility offtaker.',
+      valuation: '$41,200,000',
+      yield: '7.8%',
+      supply: '8,500,000 RWA',
+      funded: 61,
+      g1: '#3ddcf0', g2: '#0b4f63',
+      icon: '<circle cx="40" cy="20" r="9"/><path d="M40 3v7M40 30v7M23 20h7M50 20h7M28 8l5 5M47 27l5 5M52 8l-5 5M33 27l-5 5"/><rect x="14" y="42" width="52" height="20" rx="3"/><path d="M40 42v20M23 42l6 20M57 42l-6 20"/>'
+    },
+    {
+      name: 'Basquiat Study, 1982',
+      category: 'Fine Art',
+      desc: 'Museum-grade work with a full provenance chain and free-port storage in Geneva.',
+      valuation: '$12,750,000',
+      yield: '0.9%',
+      supply: '2,400,000 RWA',
+      funded: 88,
+      g1: '#8b7bff', g2: '#2a1d6b',
+      icon: '<rect x="14" y="10" width="52" height="52" rx="3"/><rect x="20" y="16" width="40" height="40" rx="1"/><path d="M26 48l12-16 8 10 6-7 8 13"/>'
+    },
+    {
+      name: 'Lisbon Residential Portfolio',
+      category: 'Real Estate',
+      desc: '214 long-let apartments across three districts, 96% occupancy, EU regulated.',
+      valuation: '$58,900,000',
+      yield: '5.4%',
+      supply: '12,000,000 RWA',
+      funded: 43,
+      g1: '#6c5ce7', g2: '#221a55',
+      icon: '<path d="M16 60V26l24-14 24 14v34"/><rect x="24" y="34" width="8" height="9"/><rect x="36" y="34" width="8" height="9"/><rect x="48" y="34" width="8" height="9"/><rect x="32" y="48" width="10" height="12"/><path d="M10 60h60"/>'
+    },
+    {
+      name: 'Blue-Chip Invoice Pool',
+      category: 'Receivables',
+      desc: '48 investment-grade invoices, 45-day average tenor, credit-insured.',
+      valuation: '$2,400,000',
+      yield: '9.2%',
+      supply: '600,000 RWA',
+      funded: 97,
+      g1: '#f8a5c2', g2: '#5c1533',
+      icon: '<path d="M20 8h30l10 10v42a2 2 0 0 1-2 2H20a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2Z"/><path d="M50 8v10h10"/><path d="M26 30h24M26 40h24M26 50h14"/>'
+    }
+  ];
+
+  const assetGrid = document.getElementById('assetGrid');
+  assets.forEach((a, i) => {
+    const art = `
+      <article class="glass card-hover rounded-2xl overflow-hidden reveal" style="transition-delay:${(i % 3) * 0.07}s">
+        <div class="asset-visual" style="background:radial-gradient(120% 120% at 20% 0%, ${a.g1}33, transparent 60%), linear-gradient(150deg, ${a.g2}dd, #06070e 90%)">
+          <span class="absolute top-3 left-3 chip z-10" style="background:rgba(4,5,10,.55);backdrop-filter:blur(6px)">${a.category}</span>
+          <div class="absolute inset-0 grid place-items-center">
+            <svg width="72" height="72" viewBox="0 0 80 80" fill="none" stroke="${a.g1}" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" opacity=".92">${a.icon}</svg>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="text-lg font-semibold leading-snug">${a.name}</h3>
+          <p class="mt-2 text-[13px] leading-relaxed text-[#8d93ab]">${a.desc}</p>
+
+          <div class="mt-4 grid grid-cols-3 gap-2 text-center">
+            <div class="rounded-xl bg-white/[.04] border border-white/8 py-2.5">
+              <div class="text-[10px] uppercase tracking-widest text-[#7b82a0]">Value</div>
+              <div class="text-[13px] font-semibold mt-1">${a.valuation.replace(',000,000', 'M').replace(',000', 'K')}</div>
+            </div>
+            <div class="rounded-xl bg-white/[.04] border border-white/8 py-2.5">
+              <div class="text-[10px] uppercase tracking-widest text-[#7b82a0]">Yield</div>
+              <div class="text-[13px] font-semibold mt-1 text-jade-400">${a.yield}</div>
+            </div>
+            <div class="rounded-xl bg-white/[.04] border border-white/8 py-2.5">
+              <div class="text-[10px] uppercase tracking-widest text-[#7b82a0]">Supply</div>
+              <div class="text-[13px] font-semibold mt-1">${a.supply.split(' ')[0]}</div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <div class="flex items-center justify-between text-[11px] text-[#7b82a0] mb-1.5">
+              <span>Tokenization funding</span>
+              <span class="text-white font-semibold fund-pct">${a.funded}%</span>
+            </div>
+            <div class="bar h-1.5"><i class="fund-bar" style="width:${a.funded}%"></i></div>
+          </div>
+
+          <button class="mint-btn btn btn-ghost w-full mt-4 py-3 text-[13px]" data-name="${a.name}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5"/></svg>
+            Tokenize this asset
+          </button>
+        </div>
+      </article>`;
+    assetGrid.insertAdjacentHTML('beforeend', art);
+  });
+
+  /* Mint flow */
+  document.querySelectorAll('.mint-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.done) return;
+      if (!state.connected) {
+        openWallet();
+        toast('Wallet required', 'Connect a wallet to tokenize real-world assets.', 'warn');
+        return;
+      }
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.2-8.6"/></svg> Verifying legal pack…`;
+
+      setTimeout(() => {
+        btn.innerHTML = `<svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.2-8.6"/></svg> Minting ERC-721…`;
+      }, 1100);
+
+      setTimeout(() => {
+        btn.dataset.done = '1';
+        btn.disabled = true;
+        btn.className = 'mint-btn btn w-full mt-4 py-3 text-[13px]';
+        btn.style.background = 'rgba(74,222,155,.14)';
+        btn.style.border = '1px solid rgba(74,222,155,.38)';
+        btn.style.color = '#7ff0bb';
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> Minted as NFT #${1000 + Math.floor(Math.random() * 900)}`;
+
+        const card = btn.closest('article');
+        const bar = card.querySelector('.fund-bar');
+        const pct = card.querySelector('.fund-pct');
+        const cur = parseFloat(bar.style.width);
+        const next = Math.min(100, cur + 3.4);
+        bar.style.width = next + '%';
+        pct.textContent = next.toFixed(1) + '%';
+
+        toast('Asset tokenized', `“${btn.dataset.name}” is now live on-chain as an ERC-721.`, 'success');
+      }, 2600);
+    });
+  });
+
+  /* ---------------------------------------------------------
+     LIVE PURCHASE FEED
+  --------------------------------------------------------- */
+  const feed = document.getElementById('feed');
+  function addFeedRow(animate = true) {
+    const addr = randomAddr();
+    const eth = +(Math.random() * 6.5 + 0.15).toFixed(3);
+    const tokens = Math.round((eth * state.ethUsd) / state.price);
+    const row = document.createElement('div');
+    row.className = 'flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-white/[.03] px-3 py-2' + (animate ? ' feed-row' : '');
+    row.innerHTML = `
+      <span class="flex items-center gap-2.5 min-w-0">
+        <span class="grid place-items-center w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500/40 to-aqua-500/30 border border-white/10 text-[10px] font-bold shrink-0">
+          ${addr.slice(2, 4).toUpperCase()}
+        </span>
+        <span class="min-w-0">
+          <span class="block font-mono text-[11px] text-[#c3c8dc] truncate">${shortAddr(addr)}</span>
+          <span class="block text-[10px] text-[#6d7590]">just now</span>
+        </span>
+      </span>
+      <span class="text-right shrink-0">
+        <span class="block text-[11px] font-semibold text-aqua-300">+${fmt(tokens)}</span>
+        <span class="block text-[10px] text-[#6d7590]">${eth} ETH</span>
+      </span>`;
+    feed.prepend(row);
+    while (feed.children.length > 4) feed.lastElementChild.remove();
+
+    if (animate) {
+      state.raised += eth * state.ethUsd;
+      state.tokensSold += tokens;
+      renderSale();
+    }
+  }
+  for (let i = 0; i < 4; i++) addFeedRow(false);
+  setInterval(() => addFeedRow(true), 5200);
+
+  /* ---------------------------------------------------------
+     WALLET
+  --------------------------------------------------------- */
+  const walletModal = document.getElementById('walletModal');
+  const walletStatus = document.getElementById('walletStatus');
+  const walletStatusText = document.getElementById('walletStatusText');
+  const connectBtn = document.getElementById('connectBtn');
+  const connectLabel = document.getElementById('connectLabel');
+  const navEth = document.getElementById('navEth');
+
+  function openWallet() {
+    walletModal.classList.add('open');
+    walletStatus.classList.add('hidden');
+  }
+  function closeWallet() { walletModal.classList.remove('open'); }
+
+  connectBtn.addEventListener('click', () => {
+    if (state.connected) {
+      toast('Wallet connected', shortAddr(state.address) + ' · ' + state.ethBalance.toFixed(4) + ' ETH', 'info');
+      return;
+    }
+    openWallet();
+  });
+  document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', closeWallet));
+  walletModal.addEventListener('click', e => { if (e.target === walletModal) closeWallet(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWallet(); });
+
+  document.querySelectorAll('.wallet-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const provider = opt.dataset.wallet;
+      walletStatus.classList.remove('hidden');
+      walletStatusText.textContent = 'Connecting to ' + provider + '…';
+
+      setTimeout(() => {
+        state.connected = true;
+        state.address = randomAddr();
+        connectLabel.textContent = shortAddr(state.address);
+        navEth.textContent = state.ethBalance.toFixed(3);
+        document.getElementById('navBalance').classList.remove('hidden');
+        closeWallet();
+        toast('Wallet connected', provider + ' · ' + shortAddr(state.address), 'success');
+      }, 1250);
+    });
+  });
+
+  /* ---------------------------------------------------------
+     BUY
+  --------------------------------------------------------- */
+  const buyBtn = document.getElementById('buyBtn');
+
+  function executeBuy() {
+    if (!state.connected) {
+      openWallet();
+      toast('Wallet required', 'Connect a wallet to participate in the $RWA presale.', 'warn');
+      return;
+    }
+    const { eth, tokens, usd } = calc();
+    if (eth <= 0) {
+      toast('Invalid amount', 'Enter an ETH amount greater than zero.', 'warn');
+      return;
+    }
+    if (eth > state.ethBalance) {
+      toast('Insufficient balance', `You have ${state.ethBalance.toFixed(4)} ETH available.`, 'warn');
+      return;
+    }
+    if (eth < 0.01) {
+      toast('Below minimum', 'The minimum purchase is 0.01 ETH.', 'warn');
+      return;
+    }
+
+    const originalHTML = buyBtn.innerHTML;
+    buyBtn.disabled = true;
+    buyBtn.innerHTML = `<svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.2-8.6"/></svg> Confirming transaction…`;
+
+    setTimeout(() => {
+      state.ethBalance -= eth;
+      state.raised += usd;
+      state.tokensSold += tokens;
+      state.userTokens += tokens;
+
+      navEth.textContent = state.ethBalance.toFixed(3);
+      userTokens.textContent = fmt(state.userTokens);
+      allocation.classList.remove('hidden');
+      renderSale();
+
+      buyBtn.disabled = false;
+      buyBtn.innerHTML = originalHTML;
+
+      toast('Purchase confirmed',
+        `${fmt(tokens)} $RWA for ${eth} ETH · tx ${randomAddr().slice(0, 10)}…`, 'success');
+
+      /* echo into feed */
+      const row = document.createElement('div');
+      row.className = 'flex items-center justify-between gap-3 rounded-xl border border-brand-400/40 bg-brand-500/10 px-3 py-2 feed-row';
+      row.innerHTML = `
+        <span class="flex items-center gap-2.5 min-w-0">
+          <span class="grid place-items-center w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-aqua-500 text-[10px] font-bold shrink-0">YOU</span>
+          <span class="min-w-0">
+            <span class="block font-mono text-[11px] text-white truncate">${shortAddr(state.address)}</span>
+            <span class="block text-[10px] text-[#7b82a0]">just now</span>
+          </span>
+        </span>
+        <span class="text-right shrink-0">
+          <span class="block text-[11px] font-semibold text-white">+${fmt(tokens)}</span>
+          <span class="block text-[10px] text-[#7b82a0]">${eth} ETH</span>
+        </span>`;
+      feed.prepend(row);
+      while (feed.children.length > 4) feed.lastElementChild.remove();
+    }, 1800);
+  }
+
+  buyBtn.addEventListener('click', executeBuy);
+  document.getElementById('ctaBuy').addEventListener('click', () => {
+    document.getElementById('sale').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(executeBuy, 550);
+  });
+
+  /* ---------------------------------------------------------
+     CODE VIEWER
+  --------------------------------------------------------- */
+  const KEYWORDS = [
+    'pragma','solidity','import','contract','interface','library','is','using','for','function',
+    'constructor','modifier','event','emit','returns','return','require','revert','if','else',
+    'new','delete','public','private','external','internal','view','pure','payable','memory',
+    'storage','calldata','mapping','struct','enum','address','uint256','uint192','uint64','uint16',
+    'uint8','int256','bool','string','bytes32','bytes','indexed','constant','immutable','override',
+    'virtual','unchecked','try','catch','assembly','abstract','true','false','ether','wei','gwei',
+    'days','seconds','msg','block','tx','this','now','type','abi','keccak256','onlyOwner','nonReentrant',
+    'whenNotPaused','onlyIssuer','onlyMinter','onlyLive','super','value'
+  ];
+
+  const HL_RE = new RegExp(
+    '(\\/\\/[^\\n]*)|(\\/\\*[\\s\\S]*?\\*\\/)|("(?:[^"\\\\]|\\\\.)*")|\\b(0x[0-9a-fA-F_]+|\\d[\\d_]*)\\b|\\b(' +
+    KEYWORDS.slice().sort((a, b) => b.length - a.length).join('|') + ')\\b', 'g'
+  );
+
+  function highlight(src) {
+    const escaped = src
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    return escaped.replace(HL_RE, (m, lineCmt, blockCmt, str, num, kw) => {
+      if (lineCmt)  return '<span class="c-cm">'  + lineCmt  + '</span>';
+      if (blockCmt) return '<span class="c-cm">'  + blockCmt + '</span>';
+      if (str)      return '<span class="c-str">' + str      + '</span>';
+      if (num)      return '<span class="c-num">' + num      + '</span>';
+      if (kw)       return '<span class="c-kw">'  + kw       + '</span>';
+      return m;
+    });
+  }
+
+  const codeOut = document.getElementById('codeOut');
+  const srcMap = {
+    ico: document.getElementById('src-ico').textContent.trim(),
+    nft: document.getElementById('src-nft').textContent.trim(),
+    token: document.getElementById('src-token').textContent.trim()
+  };
+  let currentContract = 'ico';
+
+  function renderCode(key) {
+    currentContract = key;
+    codeOut.innerHTML = highlight(srcMap[key]);
+  }
+  renderCode('ico');
+
+  document.querySelectorAll('#tabs .tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('#tabs .tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      renderCode(t.dataset.target);
+    });
+  });
+
+  const copyBtn = document.getElementById('copyBtn');
+  const copyLabel = document.getElementById('copyLabel');
+  copyBtn.addEventListener('click', () => {
+    const text = srcMap[currentContract];
+    const done = () => {
+      copyLabel.textContent = 'Copied!';
+      setTimeout(() => (copyLabel.textContent = 'Copy'), 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(done);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      ta.remove();
+      done();
+    }
+  });
+
+  /* ---------------------------------------------------------
+     TOKENOMICS DONUT
+  --------------------------------------------------------- */
+  const segments = [
+    { name: 'Public Presale',        value: 40, color: '#6c5ce7', note: 'Stages 1–4 · TGE + 6mo linear' },
+    { name: 'Ecosystem & Rewards',   value: 20, color: '#3ddcf0', note: 'Staking, grants, liquidity mining' },
+    { name: 'Team & Contributors',   value: 15, color: '#f5c451', note: '12mo cliff · 36mo vesting' },
+    { name: 'Liquidity Provision',   value: 10, color: '#4ade9b', note: 'Locked 24 months on Uniswap v4' },
+    { name: 'Treasury / SPV Ops',    value: 10, color: '#f8a5c2', note: 'Multisig · 48h timelock' },
+    { name: 'Advisors & Legal',      value: 5,  color: '#8b90a8', note: '18mo vesting, no cliff' }
+  ];
+
+  const donut = document.getElementById('donut');
+  const legend = document.getElementById('legend');
+
+  function hexToRgb(h) {
+    const n = parseInt(h.slice(1), 16);
+    return [n >> 16 & 255, n >> 8 & 255, n & 255];
+  }
+  function blend(hex, t) {
+    const [r, g, b] = hexToRgb(hex);
+    const target = [13, 16, 26];
+    const mix = (a, c) => Math.round(a + (c - a) * t);
+    return `rgb(${mix(r, target[0])},${mix(g, target[1])},${mix(b, target[2])})`;
+  }
+
+  function renderDonut(active = -1) {
+    let acc = 0;
+    const parts = segments.map((s, i) => {
+      const from = acc;
+      acc += s.value;
+      const color = active === -1 || active === i ? s.color : blend(s.color, 0.68);
+      return `${color} ${from}% ${acc}%`;
+    });
+    donut.style.background = `conic-gradient(${parts.join(', ')})`;
+  }
+  renderDonut();
+
+  legend.innerHTML = segments.map((s, i) => `
+    <div class="legend-item flex items-center gap-3.5" data-i="${i}">
+      <span class="w-3 h-3 rounded-sm shrink-0" style="background:${s.color}"></span>
+      <span class="flex-1 min-w-0">
+        <span class="flex items-baseline justify-between gap-3">
+          <span class="text-sm font-semibold text-white">${s.name}</span>
+          <span class="text-sm font-semibold" style="color:${s.color}">${s.value}%</span>
+        </span>
+        <span class="block text-[11px] text-[#7b82a0] mt-1">${s.note}</span>
+        <span class="block mt-2 bar h-1"><i style="width:${s.value * 2}%;background:${s.color}"></i></span>
+      </span>
+    </div>`).join('');
+
+  legend.querySelectorAll('.legend-item').forEach(item => {
+    item.addEventListener('mouseenter', () => renderDonut(+item.dataset.i));
+    item.addEventListener('mouseleave', () => renderDonut(-1));
+  });
+
+  /* ---------------------------------------------------------
+     ROADMAP
+  --------------------------------------------------------- */
+  const roadmap = [
+    {
+      q: 'Q1 2025', title: 'Foundation', status: 'Complete', tone: 'jade',
+      items: ['Core ERC-721 registry shipped', 'SPV framework in 3 jurisdictions', 'CertiK audit passed (96.4)']
+    },
+    {
+      q: 'Q3 2025', title: 'Presale & TGE', status: 'In progress', tone: 'brand',
+      items: ['$RWA presale — 4 stages', 'TGE + Uniswap v4 liquidity lock', 'Staking contracts live on mainnet']
+    },
+    {
+      q: 'Q1 2026', title: 'Lending Vaults', status: 'Upcoming', tone: 'aqua',
+      items: ['Over-collateralized RWA loans', 'Chainlink appraisal oracle network', 'Institutional custody integrations']
+    },
+    {
+      q: 'Q3 2026', title: 'Cross-chain', status: 'Planned', tone: 'gold',
+      items: ['CCIP bridge to Arbitrum & Base', 'Compliance hooks (ERC-3643)', 'Regulated secondary marketplace']
+    }
+  ];
+
+  const toneMap = {
+    jade:  { dot: '#4ade9b', text: '#7ff0bb', bg: 'rgba(74,222,155,.12)',  bd: 'rgba(74,222,155,.35)' },
+    brand: { dot: '#8b7bff', text: '#a99cff', bg: 'rgba(108,92,231,.16)',  bd: 'rgba(139,123,255,.4)' },
+    aqua:  { dot: '#3ddcf0', text: '#6ce9f7', bg: 'rgba(61,220,240,.12)',  bd: 'rgba(61,220,240,.35)' },
+    gold:  { dot: '#f5c451', text: '#f8d67a', bg: 'rgba(245,196,81,.12)',  bd: 'rgba(245,196,81,.35)' }
+  };
+
+  document.getElementById('roadmap-grid').innerHTML = roadmap.map((r, i) => {
+    const t = toneMap[r.tone];
+    return `
+      <article class="glass card-hover rounded-2xl p-6 reveal" style="transition-delay:${i * 0.07}s">
+        <div class="flex items-center justify-between gap-3">
+          <span class="font-mono text-[11px] tracking-widest text-[#7b82a0]">${r.q}</span>
+          <span class="text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                style="color:${t.text};background:${t.bg};border:1px solid ${t.bd}">
+            ${r.status}
+          </span>
+        </div>
+        <h3 class="mt-4 text-lg font-semibold">${r.title}</h3>
+        <ul class="mt-4 space-y-2.5">
+          ${r.items.map(it => `
+            <li class="flex gap-2.5 text-[13px] leading-relaxed text-[#9aa1ba]">
+              <span class="mt-[7px] w-1.5 h-1.5 rounded-full shrink-0" style="background:${t.dot}"></span>
+              <span>${it}</span>
+            </li>`).join('')}
+        </ul>
+      </article>`;
+  }).join('');
+
+  /* ---------------------------------------------------------
+     SCROLL REVEAL + COUNTERS
+  --------------------------------------------------------- */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      counterObserver.unobserve(el);
+      const target = parseFloat(el.dataset.count);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const isShort = el.dataset.short === 'true';
+      const dur = 1600;
+      const start = performance.now();
+
+      function frame(now) {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = target * eased;
+        if (isShort) {
+          el.textContent = prefix + (val >= 1e6 ? (val / 1e6).toFixed(2) + 'M' : fmt(Math.round(val))) + suffix;
+        } else {
+          el.textContent = prefix + fmt(Math.round(val)) + suffix;
+        }
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+  /* ---------------------------------------------------------
+     LOG
+  --------------------------------------------------------- */
+  console.log('%cAssetChain $RWA', 'color:#8b7bff;font-weight:700;font-size:14px',
+    '\nPresale stage 3 · $0.042 / RWA · contract 0x7A3f…9C2e');
+})();
+</script>
+</body>
+</html>
